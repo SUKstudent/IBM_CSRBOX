@@ -220,9 +220,9 @@ elif page == "🔮 Mission Prediction":
         )
 
         price = st.number_input(
-            "Price",
+           "Price (USD million)",
             min_value=0.0,
-            value=0.0,
+            value=50.0,
             step=1.0
         )
 
