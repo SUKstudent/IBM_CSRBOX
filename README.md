@@ -138,9 +138,10 @@ The following metrics were used:
 
 ### 📂 Project Structure
 
-####Space-Mission-Intelligence/
+### Space-Mission-Intelligence/
 
 │
+
 ├── README.md
 
 ├── train_model.py
