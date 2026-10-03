@@ -1,4 +1,4 @@
-import streamlit as st
+
 import pandas as pd
 import joblib
 from pathlib import Path
@@ -130,13 +130,6 @@ st.markdown("""
     line-height: 1.65;
 }
 
-.form-shell {
-    background: rgba(15,23,42,.78);
-    border: 1px solid rgba(56,189,248,.13);
-    border-radius: 22px;
-    padding: 1.6rem 1.7rem 1.8rem;
-    box-shadow: 0 20px 55px rgba(0,0,0,.22);
-}
 
 .result-success, .result-failure, .result-warning, .result-neutral {
     border-radius: 20px;
@@ -372,45 +365,40 @@ elif page == "🔮 Mission Prediction":
 
     st.markdown('<div class="section-label">Mission Details</div>', unsafe_allow_html=True)
 
-    with st.container():
-        st.markdown('<div class="form-shell">', unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
 
-        col1, col2 = st.columns(2)
+    with col1:
+        company = st.text_input("Company", placeholder="e.g. SpaceX")
+        location = st.text_input("Launch Location", placeholder="e.g. Cape Canaveral")
+        time = st.text_input("Launch Time", placeholder="e.g. 18:00:00")
+        rocket = st.text_input("Rocket", placeholder="Enter rocket name")
+        price = st.number_input(
+            "Price (USD million)",
+            min_value=0.0,
+            value=50.0,
+            step=1.0
+        )
 
-        with col1:
-            company = st.text_input("Company", placeholder="e.g. SpaceX")
-            location = st.text_input("Launch Location", placeholder="e.g. Cape Canaveral")
-            time = st.text_input("Launch Time", placeholder="e.g. 18:00:00")
-            rocket = st.text_input("Rocket", placeholder="Enter rocket name")
-            price = st.number_input(
-                "Price (USD million)",
-                min_value=0.0,
-                value=50.0,
-                step=1.0
-            )
-
-        with col2:
-            mission = st.text_input("Mission", placeholder="Enter mission name")
-            rocket_status = st.text_input(
-                "Rocket Status",
-                placeholder="e.g. StatusActive"
-            )
-            year = st.number_input(
-                "Year",
-                min_value=1950,
-                max_value=2100,
-                value=2020,
-                step=1
-            )
-            month = st.number_input(
-                "Month",
-                min_value=1,
-                max_value=12,
-                value=1,
-                step=1
-            )
-
-        st.markdown("</div>", unsafe_allow_html=True)
+    with col2:
+        mission = st.text_input("Mission", placeholder="Enter mission name")
+        rocket_status = st.text_input(
+            "Rocket Status",
+            placeholder="e.g. StatusActive"
+        )
+        year = st.number_input(
+            "Year",
+            min_value=1950,
+            max_value=2100,
+            value=2020,
+            step=1
+        )
+        month = st.number_input(
+            "Month",
+            min_value=1,
+            max_value=12,
+            value=1,
+            step=1
+        )
 
     st.write("")
     predict = st.button(
