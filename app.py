@@ -44,7 +44,7 @@ CSS = """
 }
 .stApp p, .stApp label, .stApp h1, .stApp h2, .stApp h3 { font-family: 'Inter', sans-serif; }
 
-/* ---------- Hide native chrome (header kept transparent so sidebar toggle works) ---------- */
+/* ---------- Hide native chrome ---------- */
 #MainMenu, footer, [data-testid="stToolbar"], [data-testid="stDecoration"],
 [data-testid="stStatusWidget"] { display: none !important; visibility: hidden; }
 header[data-testid="stHeader"] { background: transparent; height: 2.5rem; }
@@ -52,9 +52,44 @@ header[data-testid="stHeader"] { background: transparent; height: 2.5rem; }
 .block-container { max-width: 1180px; padding: 2rem 2rem 2rem; }
 
 /* ---------- Sidebar ---------- */
-[data-testid="stSidebar"] {
+/* Permanently visible, non-collapsible, sticky sidebar with a stable width */
+section[data-testid="stSidebar"] {
     background: #080D18;
     border-right: 1px solid var(--line);
+    position: sticky !important;
+    top: 0;
+    height: 100vh !important;
+    width: 288px !important;
+    min-width: 288px !important;
+    max-width: 288px !important;
+    transform: none !important;
+    margin-left: 0 !important;
+    visibility: visible !important;
+    flex-shrink: 0;
+}
+section[data-testid="stSidebar"][aria-expanded="false"] {
+    transform: none !important;
+    margin-left: 0 !important;
+    width: 288px !important;
+    min-width: 288px !important;
+}
+/* Hide every collapse / expand control (current and older Streamlit versions) */
+[data-testid="stSidebarCollapseButton"],
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="collapsedControl"],
+[data-testid="stSidebarHeader"],
+[data-testid="stExpandSidebarButton"],
+button[kind="header"],
+button[aria-label*="sidebar" i] {
+    display: none !important;
+}
+section[data-testid="stSidebar"] [data-testid="stSidebarContent"] { height: 100vh; }
+@media (max-width: 640px) {
+    section[data-testid="stSidebar"],
+    section[data-testid="stSidebar"][aria-expanded="false"] {
+        width: 220px !important; min-width: 220px !important; max-width: 220px !important;
+    }
+    .block-container { padding: 1.5rem 1rem 2rem; }
 }
 [data-testid="stSidebar"] > div:first-child { padding-top: 0; }
 [data-testid="stSidebarContent"] { overflow-y: auto; }
