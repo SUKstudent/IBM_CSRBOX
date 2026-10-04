@@ -156,3 +156,7 @@ The following metrics were used:
 
 - After successful execution, the trained Random Forest model is saved as:
       -space_mission_model.pkl
+  
+## 🚀 Streamlit Deployment
+
+- The project is deployed as an interactive web application using Streamlit: https://ibmcsrbox.streamlit.app/
